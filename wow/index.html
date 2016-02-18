@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOW Demo</title>
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <style>
+        h1 {
+            text-align: center;
+            color: red;
+            text-transform: uppercase;
+        }
+
+        #container{
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .list-item {
+            text-align: center;
+            margin: 30px 30px 0 30px;
+        }
+
+        .list-item div {
+            display: inline-block;
+            margin: 15px 15px 0 15px;
+        }
+
+        .list-item div img {
+            width: 260px;
+            height: 260px;
+            -webkit-border-radius: 260px;
+            -moz-border-radius: 260px;
+            border-radius: 260px;
+        }
+    </style>
+</head>
+<body>
+<h1 class="wow bounceInDown">wow demo</h1>
+
+<div id="container">
+    <div class="list-item">
+        <div class="wow flash" data-wow-duration="1000ms" data-wow-delay="20ms">
+            <img src="image/1.jpg">
+        </div>
+        <div class="wow rubberBand" data-wow-duration="1000ms" data-wow-delay="20ms">
+            <img src="image/2.jpg">
+        </div>
+        <div class="wow shake" data-wow-duration="1000ms" data-wow-delay="20ms">
+            <img src="image/3.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow swing" data-wow-duration="1000ms" data-wow-delay="30ms" data-wow-iteration="3">
+            <img src="image/4.jpg">
+        </div>
+        <div class="wow wobble" data-wow-duration="1000ms" data-wow-delay="30ms" data-wow-iteration="6">
+            <img src="image/5.jpg">
+        </div>
+        <div class="wow bounceIn" data-wow-duration="1000ms" data-wow-delay="30ms" data-wow-iteration="9">
+            <img src="image/6.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow bounceInLeft" data-wow-duration="1000ms" data-wow-delay="40ms">
+            <img src="image/7.jpg">
+        </div>
+        <div class="wow bounceInUp" data-wow-duration="1000ms" data-wow-delay="40ms">
+            <img src="image/8.jpg">
+        </div>
+        <div class="wow bounceInRight" data-wow-duration="1000ms" data-wow-delay="40ms">
+            <img src="image/9.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow flipInX" data-wow-duration="1000ms" data-wow-delay="50ms">
+            <img src="image/10.jpg">
+        </div>
+        <div class="wow flip" data-wow-duration="1000ms" data-wow-delay="50ms">
+            <img src="image/11.jpg">
+        </div>
+        <div class="wow flipInY" data-wow-duration="1000ms" data-wow-delay="50ms">
+            <img src="image/12.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow rotateInDownLefta" data-wow-duration="1000ms" data-wow-delay="60ms">
+            <img src="image/13.jpg">
+        </div>
+        <div class="wow rotateIn" data-wow-duration="1000ms" data-wow-delay="60ms">
+            <img src="image/14.jpg">
+        </div>
+        <div class="wow rotateInDownRight" data-wow-duration="1000ms" data-wow-delay="60ms">
+            <img src="image/15.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow slideInLeft" data-wow-duration="1000ms" data-wow-delay="70ms">
+            <img src="image/16.jpg">
+        </div>
+        <div class="wow slideInDown" data-wow-duration="1000ms" data-wow-delay="70ms">
+            <img src="image/17.jpg">
+        </div>
+        <div class="wow slideInRight" data-wow-duration="1000ms" data-wow-delay="70ms">
+            <img src="image/18.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow zoomInUp" data-wow-duration="1000ms" data-wow-delay="80ms">
+            <img src="image/19.jpg">
+        </div>
+        <div class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="80ms">
+            <img src="image/20.jpg">
+        </div>
+        <div class="wow zoomInDown" data-wow-duration="1000ms" data-wow-delay="80ms">
+            <img src="image/21.jpg">
+        </div>
+    </div>
+    <div class="list-item">
+        <div class="wow lightSpeedIn" data-wow-duration="1000ms" data-wow-delay="90ms">
+            <img src="image/22.jpg">
+        </div>
+        <div class="wow tada" data-wow-duration="1000ms" data-wow-delay="90ms">
+            <img src="image/23.jpg">
+        </div>
+        <div class="wow zoomInRight" data-wow-duration="1000ms" data-wow-delay="90ms">
+            <img src="image/24.jpg">
+        </div>
+    </div>
+</div>
+</body>
+</html>
