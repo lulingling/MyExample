@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.countTo.js"></script>
+</head>
+<body>
+<span class="timer1"></span>
+<span class="timer2" data-form="0" data-to="7000" data-speed="3000" data-refresh-interval="50"></span>
+<script>
+    $(".timer1").countTo({
+        from: 0,
+        to: 5000,
+        speed: 1000,
+        refreshInterval: 50,
+        formatter: function (value, options) {
+            return value.toFixed(options.decimals);
+        },
+        onUpdate: function (value) {
+            console.debug(this);
+        },
+        onComplete: function (value) {
+            console.debug(this);
+        }
+    });
+
+    $(".timer2").countTo();
+</script>
+</body>
+</html>
