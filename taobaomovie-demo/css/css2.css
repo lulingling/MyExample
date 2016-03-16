@@ -1,0 +1,145 @@
+* {
+    font-family: Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, STXihei, SimHei, WenQuanYi Micro Hei, Droid Sans, sans-serif !important;
+}
+
+body, div, a, img, span, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+.con-nhz {
+    width: 100%;
+    /* min-width: 320px; max-width: 750px; */
+    margin: 0 auto;
+    overflow: hidden;
+    background: #ff5a75;
+    font-family: "microsoft yahei";
+}
+
+.con-nhz a {
+    text-decoration: none;
+    display: block;
+}
+
+.con-nhz img {
+    vertical-align: top;
+    border: 0;
+    display: block;
+}
+
+.con-nhz .clr:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.con-nhz .clr {
+    zoom: 1;
+}
+
+.nhz-banner {
+    width: 100%;
+    height: auto;
+}
+
+.img1 {
+    width: 16rem;
+    height: 6rem;
+}
+
+.gm1 {
+    width: 16rem;
+    height: 7.2rem;
+    position: relative;
+}
+
+.img2 {
+    width: 16rem;
+    height: 7.2rem;
+}
+
+.gmUrl1 {
+    position: absolute;
+    top: 2.6rem;
+    left: 5.4rem;
+    z-index: 5;
+    width: 5.2rem;
+    height: 2.1rem;
+}
+
+.img3 {
+    width: 16rem;
+    height: 7.04rem;
+}
+
+.img4 {
+    width: 16rem;
+    height: 3.09rem;
+}
+
+.nhz-rul {
+    width: 100%;
+}
+
+.gm2 {
+    width: 16rem;
+    height: 5.17rem;
+    position: relative;
+}
+
+.img5 {
+    width: 16rem;
+    height: 5.17rem;
+}
+
+.gmUrl2 {
+    position: absolute;
+    top: 0;
+    left: 5.4rem;
+    z-index: 5;
+    width: 5.2rem;
+    height: 2.1rem;
+}
+
+.img6 {
+    width: 16rem;
+    height: 4.096rem;
+}
+
+.rulTxt {
+    width: 16rem;
+    height: auto;
+    padding-bottom: 1.5rem;
+    background: #ff5a75;
+}
+
+.gh-content {
+    width: 12.904rem;
+    margin: 0 auto;
+    text-align: justify;
+    list-style: none;
+}
+
+.gh-content li {
+    color: #fff;
+    font-size: 0.512rem;
+    text-indent: -0.853rem;
+    margin-left: 0.426rem;
+    line-height: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.vid {
+    width: 16rem;
+    height: 9.834rem;
+    background: #ff5a75;
+    background-size: 100%;
+    padding-top: 0.917rem;
+}
+
+.VID1 {
+    width: 14.293rem;
+    height: 8.9173rem;
+    margin: 0 0 0 1.088rem;
+    overflow: hidden;
+}
