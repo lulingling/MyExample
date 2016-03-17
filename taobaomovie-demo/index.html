@@ -93,25 +93,48 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAACsCAMAAAAZr595AAAAY1BMVEUAAACCgoK9vb3j4+P5+fk1NTXy8vJubm6jo6NVVVXS0tLr6+uUlJQAAADb29vIyMijo6M8PDywsLCIiIjX19fLy8thYWEAAADi4uJ7e3sJCQkAAAAAAAAAAAAAAAAAAAD////TSceNAAAAIHRSTlOZs8zm+p/0rb+m2u27AN/UzqnHw+fhtZbtvpuBWVYZcBUsCVUAAANcSURBVGje7ZrrctowEEZX94tVCxxCLm3a7/2fspaFRS8/ulKnmSTlTAIkw5ldrVYyZkSfVr6+fH6gTor4hVYGxG80xBpvjK8Pg+ILDfJ5VHygGzd+53g4aUCfDsc+7R6N+w71TuMH9B3XO+AXDsx42Hg8PD0dLDZYMY/6h/c+y5otZ5y1LonIPJ2f9z/vGQFriGc6ayATnbFxZFbmRGQBTERHbn1ONeI5bQm3Up3+KOqfp8FYbOg/iriyrN6ECx3i4zMdLXY6Un0iesSOZhWncqYzGifmdNSesz3tesSOPUQ0jqyWqziiqS1KdpM3kd/kdPd7qnejC3l06xjdrEa3xxv/H8YMitMUxsQF2hFd5cDOwBdTouF4IxREWScS8oIFsRDQhgJdUWwx08qIKP9CnFXFyk5RYfMm9IoSl9dpVBQfWZSF2C3OqHSLV96VOA2JEoDlif4n0cDOjj4aTs1yRSkjVhy59THwqmrVioZAQ3ZMh0JYQyWoGpclRrFSp93DE5eWIQkvFJIQi6CuVEm2IXaLgkL7BzvVKkIHrhjkhU20ihvRL6IifREVW1TYUUUEW3SO6u4Y3CbOTLFY3hSx6MJA8kXASUiZS8SE5NhVRaxTL4Iwk86rxsND7VcAM0Ouv7MhZlnjJhpvEYkoYjK8TCNQRAtds4w6MMQZjiRg47LYJCpRCtYIiUK0qLA/W7ko9ldlA2h9+7ZRi6Ee/GW+A5C6xAnW1RZfqAuTAb8+aagNDVj+B+RAefUsptUEf291vjZChtsuCR3pphKUJizlwfM9nWZfYhV9mYmNgiy6xVJWFJ+IWFdxJo+OmxeJqRRo2qJF6IUbrwhixmXHkID1nHxzKYhR10BC83rPTMIIkeYUypIshLx0XVobgogtRtGIXaKkhnzj4nBxlGyo0VS9cvSvCfuz6PMSMm0ssKFHNBNm05Zll3m5kmrb/R3GDEXkB6bSlCmwun8qa2lkX9eFMt/CeGjTJ0oUcvmpN/SRKfospUXwuXZshKwiC4XWseJVRVvGOCJexxhGU6UxMYLGUlU9okt7cXKX6LTeU1UdooXW3rTbTW35+6p2VPFeZCj2rnO98jusJGLiDTWymhPduHHjxjvl4dWP2bzQ+FGi8cNLr3lcavyA1vCRsO+I7W35oVvfqgAAAABJRU5ErkJggg=="
              style="width: 30px;">
     </a>
-    <!--动态调整文档视图，调整字体大小-->
+
+    <!--Important--动态调整文档视图，调整字体大小-->
     <script>
+        /* !function () {
+         function a() {
+         /!*动态改变html的fontSize*!/
+         document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px"
+         }
+
+         var b = null;
+
+         /!*当文档视图被调整时触发resize时间*!/
+         window.addEventListener("resize", function () {
+         clearTimeout(b), b = setTimeout(a, 300)
+         }, !1), a()
+         }(window);*/
+
+        /*Jquery监听窗口resize事件，要立即执行，不能放在$(function(){})中（不能加载完所有的才执行）*/
         !function () {
-            function a() {
-                /*动态改变html的fontSize*/
-                document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px"
+            /*css里面所有的rem数值的计算公式都是（px值除以（750/16=46.875））得到的，16既是function changeFontSize里面的16，
+             750是一般图片的宽度，方便计算，750px按公式得到的是16rem整数*/
+            function changeFontSize() {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px";
             }
 
-            var b = null;
+            var resizeTimer = null;
 
-            /*当文档视图被调整时触发resize时间*/
             window.addEventListener("resize", function () {
-                clearTimeout(b), b = setTimeout(a, 300)
-            }, !1), a()
+                if (resizeTimer) {
+                    clearTimeout(resizeTimer);
+                }
+
+                resizeTimer = setTimeout(changeFontSize, 300);
+            }, false);
+
+            changeFontSize();
         }(window);
+
     </script>
 
     <div class="gh-layout">
-        <!--banner 图-->
+        <!--banner 图:因为背景图片无法缩放，(background-size:cover|contain)只能针对单张图片，所以将背景图拆分成单个的图片-->
         <div class="gh-banner">
             <img src="images/indexImage/img1.jpg" alt="" class="img200">
             <img src="images/indexImage/img2.jpg" alt="" class="img200">
@@ -161,177 +184,177 @@
                         </div>
                     </div>
                 </li>
-                <!--                <li class="gh-product clr">
-                                    <a class="pro-left J_linkMovieDetail" data-id="151014" data-name="神战：权力之眼" data-duration="127"
-                                       data-showdate="" target="_blank">
-                                        <img data-ks-lazyload="images/item2-img.jpg"
-                                             alt="" class="pro-img">
-                                    </a>
+                <li class="gh-product clr">
+                    <a class="pro-left J_linkMovieDetail" data-id="151014" data-name="神战：权力之眼" data-duration="127"
+                       data-showdate="" target="_blank">
+                        <img data-ks-lazyload="images/indexImage/item2-img.jpg"
+                             alt="" class="pro-img">
+                    </a>
 
-                                    <div class="pro-right">
-                                        <p class="pro-title">神战：权力之眼</p>
+                    <div class="pro-right">
+                        <p class="pro-title">神战：权力之眼</p>
 
-                                        <p class="pro-des">永恒之战 即将开启</p>
+                        <p class="pro-des">永恒之战 即将开启</p>
 
-                                        <div class="pro-actor clr">
-                                            <p class="pro-actor-left">主演:</p>
+                        <div class="pro-actor clr">
+                            <p class="pro-actor-left">主演:</p>
 
-                                            <p class="pro-actor-right">
-                                                尼古拉·科斯特-瓦尔道 / 杰拉德·巴特勒 </p>
-                                        </div>
-                                        <div class="pro-director clr">
-                                            <p class="pro-director-left">
-                                                导演:
-                                            </p>
+                            <p class="pro-actor-right">
+                                尼古拉·科斯特-瓦尔道 / 杰拉德·巴特勒 </p>
+                        </div>
+                        <div class="pro-director clr">
+                            <p class="pro-director-left">
+                                导演:
+                            </p>
 
-                                            <p class="pro-director-right">
-                                                亚历克斯·普罗亚斯 </p>
-                                        </div>
-                                        <div class="pro-button clr">
-                                            <a class="pro-buy J_linkMovieDetail" data-id="151014" data-name="神战：权力之眼"
-                                               data-duration="127" data-showdate="" target="_blank">立即购票</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="gh-product clr">
-                                    <a class="pro-left J_linkMovieDetail" data-id="174519" data-name="叶问3" data-duration="105"
-                                       data-showdate="" target="_blank">
-                                        <img data-ks-lazyload="images/item3-img.jpg"
-                                             alt="" class="pro-img">
-                                    </a>
+                            <p class="pro-director-right">
+                                亚历克斯·普罗亚斯 </p>
+                        </div>
+                        <div class="pro-button clr">
+                            <a class="pro-buy J_linkMovieDetail" data-id="151014" data-name="神战：权力之眼"
+                               data-duration="127" data-showdate="" target="_blank">立即购票</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="gh-product clr">
+                    <a class="pro-left J_linkMovieDetail" data-id="174519" data-name="叶问3" data-duration="105"
+                       data-showdate="" target="_blank">
+                        <img data-ks-lazyload="images/indexImage/item3-img.jpg"
+                             alt="" class="pro-img">
+                    </a>
 
-                                    <div class="pro-right">
-                                        <p class="pro-title">叶问3</p>
+                    <div class="pro-right">
+                        <p class="pro-title">叶问3</p>
 
-                                        <p class="pro-des">叶问VS泰森，宗师别样对决</p>
+                        <p class="pro-des">叶问VS泰森，宗师别样对决</p>
 
-                                        <div class="pro-actor clr">
-                                            <p class="pro-actor-left">主演:</p>
+                        <div class="pro-actor clr">
+                            <p class="pro-actor-left">主演:</p>
 
-                                            <p class="pro-actor-right">
-                                                甄子丹 / 迈克·泰森 / 张晋 / 熊黛林 </p>
-                                        </div>
-                                        <div class="pro-director clr">
-                                            <p class="pro-director-left">
-                                                导演:
-                                            </p>
+                            <p class="pro-actor-right">
+                                甄子丹 / 迈克·泰森 / 张晋 / 熊黛林 </p>
+                        </div>
+                        <div class="pro-director clr">
+                            <p class="pro-director-left">
+                                导演:
+                            </p>
 
-                                            <p class="pro-director-right">
-                                                叶伟信 </p>
-                                        </div>
-                                        <div class="pro-button clr">
-                                            <a class="pro-buy J_linkMovieDetail" data-id="174519" data-name="叶问3" data-duration="105"
-                                               data-showdate="" target="_blank">立即购票</a>
-                                            <a class="pro-more" href="https://www.taobao.com/market/dianying/dy5.php" target="_blank">更多精彩></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="gh-product clr">
-                                    <a class="pro-left J_linkMovieDetail" data-id="151583" data-name="美人鱼" data-duration="93"
-                                       data-showdate="" target="_blank">
-                                        <img data-ks-lazyload="images/item4-img.jpg"
-                                             alt="" class="pro-img">
-                                    </a>
+                            <p class="pro-director-right">
+                                叶伟信 </p>
+                        </div>
+                        <div class="pro-button clr">
+                            <a class="pro-buy J_linkMovieDetail" data-id="174519" data-name="叶问3" data-duration="105"
+                               data-showdate="" target="_blank">立即购票</a>
+                            <a class="pro-more" href="https://www.taobao.com/market/dianying/dy5.php" target="_blank">更多精彩></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="gh-product clr">
+                    <a class="pro-left J_linkMovieDetail" data-id="151583" data-name="美人鱼" data-duration="93"
+                       data-showdate="" target="_blank">
+                        <img data-ks-lazyload="images/indexImage/item4-img.jpg"
+                             alt="" class="pro-img">
+                    </a>
 
-                                    <div class="pro-right">
-                                        <p class="pro-title">美人鱼</p>
+                    <div class="pro-right">
+                        <p class="pro-title">美人鱼</p>
 
-                                        <p class="pro-des">星爷执导，三年磨一剑</p>
+                        <p class="pro-des">星爷执导，三年磨一剑</p>
 
-                                        <div class="pro-actor clr">
-                                            <p class="pro-actor-left">主演:</p>
+                        <div class="pro-actor clr">
+                            <p class="pro-actor-left">主演:</p>
 
-                                            <p class="pro-actor-right">
-                                                邓超 / 罗志祥 / 张雨绮 / 林允 </p>
-                                        </div>
-                                        <div class="pro-director clr">
-                                            <p class="pro-director-left">
-                                                导演:
-                                            </p>
+                            <p class="pro-actor-right">
+                                邓超 / 罗志祥 / 张雨绮 / 林允 </p>
+                        </div>
+                        <div class="pro-director clr">
+                            <p class="pro-director-left">
+                                导演:
+                            </p>
 
-                                            <p class="pro-director-right">
-                                                周星驰 </p>
-                                        </div>
-                                        <div class="pro-button clr">
-                                            <a class="pro-buy J_linkMovieDetail" data-id="151583" data-name="美人鱼" data-duration="93"
-                                               data-showdate="" target="_blank">立即购票</a>
-                                            <a class="pro-more" href="//www.tmall.hk/market/movie/alfheim-content.php?id=199"
-                                               target="_blank">更多精彩></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="gh-product clr">
-                                    <a class="pro-left J_linkMovieDetail" data-id="165698" data-name="荒野猎人" data-duration="156"
-                                       data-showdate="" target="_blank">
-                                        <img data-ks-lazyload="images/item5-img.jpg"
-                                             alt="" class="pro-img">
-                                    </a>
+                            <p class="pro-director-right">
+                                周星驰 </p>
+                        </div>
+                        <div class="pro-button clr">
+                            <a class="pro-buy J_linkMovieDetail" data-id="151583" data-name="美人鱼" data-duration="93"
+                               data-showdate="" target="_blank">立即购票</a>
+                            <a class="pro-more" href="//www.tmall.hk/market/movie/alfheim-content.php?id=199"
+                               target="_blank">更多精彩></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="gh-product clr">
+                    <a class="pro-left J_linkMovieDetail" data-id="165698" data-name="荒野猎人" data-duration="156"
+                       data-showdate="" target="_blank">
+                        <img data-ks-lazyload="images/indexImage/item5-img.jpg"
+                             alt="" class="pro-img">
+                    </a>
 
-                                    <div class="pro-right">
-                                        <p class="pro-title">荒野猎人</p>
+                    <div class="pro-right">
+                        <p class="pro-title">荒野猎人</p>
 
-                                        <p class="pro-des">荒野极致绝境，小李浴血重生</p>
+                        <p class="pro-des">荒野极致绝境，小李浴血重生</p>
 
-                                        <div class="pro-actor clr">
-                                            <p class="pro-actor-left">主演:</p>
+                        <div class="pro-actor clr">
+                            <p class="pro-actor-left">主演:</p>
 
-                                            <p class="pro-actor-right">
-                                                莱昂纳多·迪卡普里奥 / 汤姆·哈迪 </p>
-                                        </div>
-                                        <div class="pro-director clr">
-                                            <p class="pro-director-left">
-                                                导演:
-                                            </p>
+                            <p class="pro-actor-right">
+                                莱昂纳多·迪卡普里奥 / 汤姆·哈迪 </p>
+                        </div>
+                        <div class="pro-director clr">
+                            <p class="pro-director-left">
+                                导演:
+                            </p>
 
-                                            <p class="pro-director-right">
-                                                亚利桑德罗·冈萨雷斯·伊纳里多 </p>
-                                        </div>
-                                        <div class="pro-button clr">
-                                            <a class="pro-buy J_linkMovieDetail" data-id="165698" data-name="荒野猎人" data-duration="156"
-                                               data-showdate="" target="_blank">立即购票</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="gh-product clr">
-                                    <a class="pro-left J_linkMovieDetail" data-id="188350" data-name="飞鹰艾迪" data-duration="105"
-                                       data-showdate="" target="_blank">
-                                        <img data-ks-lazyload="images/item6-img.jpg"
-                                             alt="" class="pro-img">
-                                    </a>
+                            <p class="pro-director-right">
+                                亚利桑德罗·冈萨雷斯·伊纳里多 </p>
+                        </div>
+                        <div class="pro-button clr">
+                            <a class="pro-buy J_linkMovieDetail" data-id="165698" data-name="荒野猎人" data-duration="156"
+                               data-showdate="" target="_blank">立即购票</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="gh-product clr">
+                    <a class="pro-left J_linkMovieDetail" data-id="188350" data-name="飞鹰艾迪" data-duration="105"
+                       data-showdate="" target="_blank">
+                        <img data-ks-lazyload="images/indexImage/item6-img.jpg"
+                             alt="" class="pro-img">
+                    </a>
 
-                                    <div class="pro-right">
-                                        <p class="pro-title">飞鹰艾迪</p>
+                    <div class="pro-right">
+                        <p class="pro-title">飞鹰艾迪</p>
 
-                                        <p class="pro-des">坚持梦想 热血起飞</p>
+                        <p class="pro-des">坚持梦想 热血起飞</p>
 
-                                        <div class="pro-actor clr">
-                                            <p class="pro-actor-left">主演:</p>
+                        <div class="pro-actor clr">
+                            <p class="pro-actor-left">主演:</p>
 
-                                            <p class="pro-actor-right">
-                                                塔伦·埃格顿 / 休·杰克曼 / 克里斯托弗·沃肯 </p>
-                                        </div>
-                                        <div class="pro-director clr">
-                                            <p class="pro-director-left">
-                                                导演:
-                                            </p>
+                            <p class="pro-actor-right">
+                                塔伦·埃格顿 / 休·杰克曼 / 克里斯托弗·沃肯 </p>
+                        </div>
+                        <div class="pro-director clr">
+                            <p class="pro-director-left">
+                                导演:
+                            </p>
 
-                                            <p class="pro-director-right">
-                                                德克斯特·弗莱彻 </p>
-                                        </div>
-                                        <div class="pro-button clr">
-                                            <a class="pro-buy J_linkMovieDetail" data-id="188350" data-name="飞鹰艾迪" data-duration="105"
-                                               data-showdate="" target="_blank">立即购票</a>
-                                            <a class="pro-more" href="https://www.taobao.com/market/dianying/act-20162.php"
-                                               target="_blank">更多精彩></a>
-                                        </div>
-                                    </div>
-                                </li>-->
+                            <p class="pro-director-right">
+                                德克斯特·弗莱彻 </p>
+                        </div>
+                        <div class="pro-button clr">
+                            <a class="pro-buy J_linkMovieDetail" data-id="188350" data-name="飞鹰艾迪" data-duration="105"
+                               data-showdate="" target="_blank">立即购票</a>
+                            <a class="pro-more" href="https://www.taobao.com/market/dianying/act-20162.php"
+                               target="_blank">更多精彩></a>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
 
         <!--活动规则-->
-        <!--<div class="gh-part5">
-            <img data-ks-lazyload="images/rule.jpg"
+        <div class="gh-part5">
+            <img data-ks-lazyload="images/indexImage/rule.jpg"
                  class="pic_90"/>
 
             <div class="regular">
@@ -345,13 +368,13 @@
                 <li>6、活动过程中，如果出现作弊行为（如批量注册、恶意购买、虚假交易等），淘宝电影将自动取消本次特惠活动订单，并有权取消您后续参与淘宝电影任何活动的权利，必要时将追究相关法律责任。</li>
                 <li>7、淘宝电影有权在法律允许范围内对活动规则做出适当调整。<br> 如需帮助请联系客服热线：0571-88157838。</li>
             </div>
-        </div>-->
+        </div>
 
         <!--footer 淘宝电影logo-->
-        <!--<div class="gh-part6">
-            <img data-ks-lazyload="images/footer.jpg"
+        <div class="gh-part6">
+            <img data-ks-lazyload="images/indexImage/footer.jpg"
                  class="pic_200"/>
-        </div>-->
+        </div>
     </div>
 
     <script src="//g.alicdn.com/??kissy/m/0.2.0/mini-full-min.js"></script>

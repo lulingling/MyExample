@@ -20,6 +20,7 @@ ul, li {
 }
 
 img {
+    /*vertical-align:top把元素的顶端与行中最高元素的顶端对齐,如果没有该属性，则图片之间出现间隔*/
     vertical-align: top;
     border: 0px;
 }
@@ -30,13 +31,17 @@ img {
 }
 
 .gh-layout a {
+    /*去除点击高粱*/
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+    /*用户可以选中文字辅助粘贴，none不可以*/
     -webkit-user-select: none;
 }
 
 .clr:before, .clr:after {
     content: '';
+
+    /*此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。*/
     display: table;
 }
 
@@ -53,28 +58,38 @@ img {
     height: 14.72rem;
 }
 
+/*活动规则图片*/
 .pic_90 {
+    /*(750/(750/16)=16rem)*/
     width: 16rem;
+    /*(90/(750/16)=1.92rem)*/
     height: 1.92rem;
 }
 
+/*footer淘宝电影图片*/
 .pic_200 {
+    /*(750/(750/16)=16rem)*/
     width: 16rem;
+    /*(200/(750/16)=4.26)*/
     height: 4.26rem;
 }
 
 .gh-content {
     width: 14.44rem;
     height: auto;
+    /*background 图片大小677*300,转换为rem(677/(750/16)=14.44)*(677/(750/16)=6.4)*/
     background: #fdfdfd url("../images/indexImage/background.png") repeat 14.44rem 6.4rem;
     background-size: 100% 100%;
+    /*或者用background-size:contain*/
     margin: 0 auto;
     border-radius: 0.15rem;
     margin-bottom: 1rem;
 }
 
 .img71 {
+    /*(676/(750/16)=14.42)*/
     width: 14.42rem;
+    /*(71/(750/16)=1.51)*/
     height: 1.51rem;
     border-radius: 0.15rem 0.15rem 0 0;
 }
@@ -100,11 +115,13 @@ img {
     float: left;
 }
 
+/*电影图片大小*/
 .pro-img {
     width: 5.46rem;
     height: 7.46rem;
 }
 
+/*电影标题大小*/
 .pro-title {
     width: 7.2rem;
     height: 1rem;
@@ -115,12 +132,14 @@ img {
     overflow: hidden;
 }
 
+/*电影副标题、导演、主演*/
 .pro-des, .pro-actor, .pro-director {
     width: 7.2rem;
     font-size: 0.52rem;
     color: #111111;
 }
 
+/*电影副标题*/
 .pro-des {
     width: 7.2rem;
     height: 1.2rem;
@@ -128,27 +147,32 @@ img {
     overflow: hidden;
 }
 
+/*电影主演、导演*/
 .pro-actor-left, .pro-director-left {
     width: 1.38rem;
     float: left;
     line-height: 0.8rem;
 }
 
+/*电影主演、导演名字*/
 .pro-actor-right, .pro-director-right {
     width: 5.8rem;
     float: left;
     line-height: 0.8rem;
 }
 
+/*电影主演*/
 .pro-actor {
     margin-bottom: 0.2rem;
 }
 
+/*立即购票和更多精彩父元素*/
 .pro-button {
     width: 7.2rem;
     margin-top: 0.9rem;
 }
 
+/*立即购票链接*/
 .pro-buy {
     width: 4.05rem;
     height: 1.46rem;
@@ -162,6 +186,7 @@ img {
     float: left;
 }
 
+/*更多精彩链接*/
 .gh-layout .pro-more {
     width: 2.8rem;
     height: 0.7rem;
@@ -175,12 +200,15 @@ img {
     margin-left: 0.2rem;
 }
 
+/*活动规则父元素*/
 .gh-part5 {
     width: 16rem;
     background-color: #ffb03b;
 }
 
+/*活动规则内容*/
 .regular {
+    /*text-align:justify 实现两端对齐文本效果*/
     text-align: justify;
     width: 13.55rem;
     font-size: 0.554rem;
@@ -202,12 +230,18 @@ img {
     border-bottom: none;
 }
 
+/*banner图片*/
 .img200 {
+    /*750/(750/16)=16rem*/
     width: 16rem;
+    /*200/(750/16)=4.26rem*/
     height: 4.26rem;
 }
 
+/*banner的最后一个图片*/
 .img157 {
+    /*750/(750/16)=16rem*/
     width: 16rem;
+    /*157/(750/16)=4.26rem*/
     height: 3.35rem;
 }
