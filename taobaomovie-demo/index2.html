@@ -89,21 +89,42 @@
 </article>
 
 <div class="spmovie" data-spm="DY">
+    <!--问题咨询-->
     <a class="dy-code-consult" href="//ihelp.taobao.com/pocket/index-14.htm?_f=tbmovie"
        style="z-index: 100;position: fixed;bottom:20%;right: 0;">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAACsCAMAAAAZr595AAAAY1BMVEUAAACCgoK9vb3j4+P5+fk1NTXy8vJubm6jo6NVVVXS0tLr6+uUlJQAAADb29vIyMijo6M8PDywsLCIiIjX19fLy8thYWEAAADi4uJ7e3sJCQkAAAAAAAAAAAAAAAAAAAD////TSceNAAAAIHRSTlOZs8zm+p/0rb+m2u27AN/UzqnHw+fhtZbtvpuBWVYZcBUsCVUAAANcSURBVGje7ZrrctowEEZX94tVCxxCLm3a7/2fspaFRS8/ulKnmSTlTAIkw5ldrVYyZkSfVr6+fH6gTor4hVYGxG80xBpvjK8Pg+ILDfJ5VHygGzd+53g4aUCfDsc+7R6N+w71TuMH9B3XO+AXDsx42Hg8PD0dLDZYMY/6h/c+y5otZ5y1LonIPJ2f9z/vGQFriGc6ayATnbFxZFbmRGQBTERHbn1ONeI5bQm3Up3+KOqfp8FYbOg/iriyrN6ECx3i4zMdLXY6Un0iesSOZhWncqYzGifmdNSesz3tesSOPUQ0jqyWqziiqS1KdpM3kd/kdPd7qnejC3l06xjdrEa3xxv/H8YMitMUxsQF2hFd5cDOwBdTouF4IxREWScS8oIFsRDQhgJdUWwx08qIKP9CnFXFyk5RYfMm9IoSl9dpVBQfWZSF2C3OqHSLV96VOA2JEoDlif4n0cDOjj4aTs1yRSkjVhy59THwqmrVioZAQ3ZMh0JYQyWoGpclRrFSp93DE5eWIQkvFJIQi6CuVEm2IXaLgkL7BzvVKkIHrhjkhU20ihvRL6IifREVW1TYUUUEW3SO6u4Y3CbOTLFY3hSx6MJA8kXASUiZS8SE5NhVRaxTL4Iwk86rxsND7VcAM0Ouv7MhZlnjJhpvEYkoYjK8TCNQRAtds4w6MMQZjiRg47LYJCpRCtYIiUK0qLA/W7ko9ldlA2h9+7ZRi6Ee/GW+A5C6xAnW1RZfqAuTAb8+aagNDVj+B+RAefUsptUEf291vjZChtsuCR3pphKUJizlwfM9nWZfYhV9mYmNgiy6xVJWFJ+IWFdxJo+OmxeJqRRo2qJF6IUbrwhixmXHkID1nHxzKYhR10BC83rPTMIIkeYUypIshLx0XVobgogtRtGIXaKkhnzj4nBxlGyo0VS9cvSvCfuz6PMSMm0ssKFHNBNm05Zll3m5kmrb/R3GDEXkB6bSlCmwun8qa2lkX9eFMt/CeGjTJ0oUcvmpN/SRKfospUXwuXZshKwiC4XWseJVRVvGOCJexxhGU6UxMYLGUlU9okt7cXKX6LTeU1UdooXW3rTbTW35+6p2VPFeZCj2rnO98jusJGLiDTWymhPduHHjxjvl4dWP2bzQ+FGi8cNLr3lcavyA1vCRsO+I7W35oVvfqgAAAABJRU5ErkJggg=="
              style="width: 30px;">
     </a>
     <script>
+        /*        !function () {
+         function a() {
+         document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px"
+         }
+
+         var b = null;
+         window.addEventListener("resize", function () {
+         clearTimeout(b), b = setTimeout(a, 300)
+         }, !1), a()
+         }(window);*/
+
         !function () {
-            function a() {
-                document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px"
+            /*css里面所有的rem数值的计算公式都是（px值除以（750/16=46.875））得到的，16既是function changeFontSize里面的16，
+             750是一般图片的宽度，方便计算，750px按公式得到的是16rem整数*/
+            function changeFontSize() {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px";
             }
 
-            var b = null;
+            var resizeTimer = null;
+
             window.addEventListener("resize", function () {
-                clearTimeout(b), b = setTimeout(a, 300)
-            }, !1), a()
+                if (resizeTimer) {
+                    clearTimeout(resizeTimer);
+                }
+
+                resizeTimer = setTimeout(changeFontSize, 300);
+            }, false);
+
+            changeFontSize();
         }(window);
     </script>
     <script src="//g.alicdn.com//kissy/k/1.4.2/seed-min.js?v=311675446_44971" charset="utf-8"></script>
@@ -154,42 +175,35 @@
     <script src="//g.alicdn.com//tb/global/2.6.11/global-min.js?v=3318490354_37547"></script>
     <div class="con-nhz">
         <div class="nhz-banner">
-            <img class="img1" src="images/index2Image/img1.jpg" width="100%"
-                 height="100%" alt=""/>
-            <img class="img1" src="images/index2Image/img2.jpg" width="100%"
-                 height="100%" alt=""/>
-            <img class="img1" src="images/index2Image/img3.jpg" width="100%"
-                 height="100%" alt=""/>
+            <img class="img1" src="images/index2Image/img1.jpg" width="100%" height="100%" alt=""/>
+            <img class="img1" src="images/index2Image/img2.jpg" width="100%" height="100%" alt=""/>
+            <img class="img1" src="images/index2Image/img3.jpg" width="100%" height="100%" alt=""/>
 
             <div class="gm1">
-                <img class="img2" src="images/index2Image/img4.jpg" width="100%"
-                     height="100%" alt=""/>
+                <img class="img2" src="images/index2Image/img4.jpg" width="100%" height="100%" alt=""/>
                 <a class="J_linkMovieDetail gmUrl1" data-id="188605" data-name="女汉子真爱公式" data-duration="92"
                    target="_blank"></a>
             </div>
         </div>
         <div class="nhz-mid">
-            <img class="img3" src="images/index2Image/img5.jpg" width="100%"
-                 height="100%" alt=""/>
-            <img class="img3" data-ks-lazyload="images/index2Image/img6.jpg"
-                 width="100%" height="100%" alt=""/>
-            <img class="img3" data-ks-lazyload="images/index2Image/img7.jpg"
-                 width="100%" height="100%" alt=""/>
+            <img class="img3" src="images/index2Image/img5.jpg" width="100%" height="100%" alt=""/>
+            <img class="img3" data-ks-lazyload="images/index2Image/img6.jpg" width="100%" height="100%" alt=""/>
+            <img class="img3" data-ks-lazyload="images/index2Image/img7.jpg" width="100%" height="100%" alt=""/>
         </div>
-        <div class="nhz-vid">
-            <div class="vvv">
-                <img class="img4" data-ks-lazyload="images/index2Image/img8.jpg"
-                     width="100%" height="100%" alt=""/>
+        <!--&lt;!&ndash;精彩视频-隐藏&ndash;&gt;-->
+        <!--<div class="nhz-vid">-->
+            <!--<div class="vvv">-->
+                <!--<img class="img4" data-ks-lazyload="images/index2Image/img8.jpg" width="100%" height="100%" alt=""/>-->
 
-                <div class="vid">
-                    <div class="VID1" id="video1"></div>
-                </div>
-            </div>
-        </div>
+                <!--<div class="vid">-->
+                    <!--<div class="VID1" id="video1"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;精彩视频-隐藏&ndash;&gt;-->
         <div class="nhz-rul">
             <div class="gm2">
-                <img class="img5" data-ks-lazyload="images/index2Image/rule.jpg"
-                     width="100%" height="100%" alt=""/>
+                <img class="img5" data-ks-lazyload="images/index2Image/rule.jpg" width="100%" height="100%" alt=""/>
                 <a class="J_linkMovieDetail gmUrl2" data-id="188605" data-name="女汉子真爱公式" data-duration="92"
                    target="_blank"></a>
             </div>
@@ -206,8 +220,7 @@
                     <li>7、淘宝电影有权在法律允许范围内对活动规则做出适当调整。淘宝电影客服热线：0571-88157838。</li>
                 </ul>
             </div>
-            <img class="img6" data-ks-lazyload="images/index2Image/footer.jpg"
-                 width="100%" height="100%" alt=""/>
+            <img class="img6" data-ks-lazyload="images/index2Image/footer.jpg" width="100%" height="100%" alt=""/>
         </div>
     </div>
     <script>

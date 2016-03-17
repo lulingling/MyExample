@@ -42,31 +42,41 @@ body, div, a, img, span, ul, li {
     height: auto;
 }
 
+/*banner图*/
 .img1 {
     width: 16rem;
     height: 6rem;
 }
 
+/*****************在图片上定位某个小图片，然后链接导向************************/
 .gm1 {
     width: 16rem;
     height: 7.2rem;
+
+    /*立即购买“女汉子真爱公式”的链接的父元素*/
     position: relative;
 }
 
+/*banner-立即购买图*/
 .img2 {
     width: 16rem;
     height: 7.2rem;
 }
 
+/*立即购买“女汉子真爱公式”的链接*/
 .gmUrl1 {
     position: absolute;
     top: 2.6rem;
+    /*16-5.4-5.2=5.4*/
     left: 5.4rem;
     z-index: 5;
     width: 5.2rem;
     height: 2.1rem;
 }
 
+/*****************在图片上定位某个小图片，然后链接导向************************/
+
+/*banner图*/
 .img3 {
     width: 16rem;
     height: 7.04rem;
@@ -81,17 +91,23 @@ body, div, a, img, span, ul, li {
     width: 100%;
 }
 
+/*****************在图片上定位某个小图片，然后链接导向************************/
+/*立即购买 活动规则父元素*/
 .gm2 {
     width: 16rem;
     height: 5.17rem;
+
+    /*立即购买 活动规则父元素的position*/
     position: relative;
 }
 
+/*立即购买 活动规则图*/
 .img5 {
     width: 16rem;
     height: 5.17rem;
 }
 
+/*立即购买 活动规则链接*/
 .gmUrl2 {
     position: absolute;
     top: 0;
@@ -100,12 +116,15 @@ body, div, a, img, span, ul, li {
     width: 5.2rem;
     height: 2.1rem;
 }
+/*****************在图片上定位某个小图片，然后链接导向************************/
 
+/*footer淘宝电影*/
 .img6 {
     width: 16rem;
     height: 4.096rem;
 }
 
+/*活动规则内容容器*/
 .rulTxt {
     width: 16rem;
     height: auto;
@@ -113,6 +132,7 @@ body, div, a, img, span, ul, li {
     background: #ff5a75;
 }
 
+/*活动规则内容列表*/
 .gh-content {
     width: 12.904rem;
     margin: 0 auto;
