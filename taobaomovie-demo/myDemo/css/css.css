@@ -25,6 +25,20 @@ img {
     border: 0;
 }
 
+
+.gh-layout a {
+    display: block;
+    text-decoration: none;
+}
+
+.gh-layout a {
+    /*去除点击高粱*/
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    /*用户可以选中文字辅助粘贴，none不可以*/
+    -webkit-user-select: none;
+}
+
 /*活动规则父元素*/
 .rule {
     width: 16rem;
