@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用rem为单位布局</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui"/>
+    <link href="css/css2.css" rel="stylesheet" type="text/css">
+    <script>
+        !function () {
+            /*css里面所有的rem数值的计算公式都是（px值除以（750/16=46.875））得到的，16既是function changeFontSize里面的16，
+             750是一般图片的宽度，方便计算，750px按公式得到的是16rem整数*/
+            function changeFontSize() {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 16 + "px";
+            }
+
+            var resizeTimer = null;
+
+            window.addEventListener("resize", function () {
+                if (resizeTimer) {
+                    clearTimeout(resizeTimer);
+                }
+
+                resizeTimer = setTimeout(changeFontSize, 300);
+            }, false);
+
+            changeFontSize();
+        }(window);
+    </script>
+</head>
+<body>
+<div class="container">
+    <div>
+        <div class="coupon">
+            <img src="images/mydemo2-image/bg1.jpg" alt="" class="bg1">
+            <img src="images/mydemo2-image/coupon2.png" alt="" class="coupon-value">
+        </div>
+
+        <img src="images/mydemo2-image/bg2.jpg" alt="" class="bg2">
+
+        <div class="link">
+            <img src="images/mydemo2-image/bg3.jpg" alt="" class="bg3">
+            <a href="http://www.baidu.com" class="iphone-linkUrl"></a>
+            <a href="http://www.bing.com" class="android-linkUrl"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
