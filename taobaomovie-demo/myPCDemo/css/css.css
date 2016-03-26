@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+    vertical-align: top;
+}
+
+#page #content{
+    overflow: visible;
+}
+
+#page #content #bd {
+    width: 100%;
+}
+
+#content {
+    background-color: #ffffff;
+}
+
+#bd {
+    /*background-color: #FFF;*/
+    /*background-image: url("../images/bgheader2.jpg");*/
+    /*background-repeat: repeat-x;*/
+    /*background-position: top center;*/
+    /*margin-bottom: 0;*/
+}
+
+.layout{
+    overflow: visible;
+}
+
+.self-defined {
+    /*position: relative;*/
+    z-index: 9;
+    overflow: visible;
+}
+
+.self-defined .box {
+    /*position: static;*/
+}
+
+.abs{
+    position: absolute;
+}
+
+.rel{
+    position: relative;
+}
