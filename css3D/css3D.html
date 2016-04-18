@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .Qcontainer {
+            height: 100%;
+            width: 28%;
+            position: relative;
+            /*One:在父级元素上设置透视（-webkit-perspective：value）,value的值越大，表示你的视点与3D场景之间的景深越大*/
+            /*如果要隐约的3D效果，就增大透视值value的值，如果想要明显的3D效果，则减小透视值value的值*/
+            -webkit-perspective: 300;
+            float: left;
+            margin-right: 2%;
+        }
+
+        .film {
+            width: 100%;
+            height: 15em;
+            /*Two：父元素.Qcontaner类中添加的透视声明只会应用到其第一个子元素上（即本例中class为.film的div），因此为了延续*/
+            /*父元素的透视，我们给.film元素设定了preserve-3d（这样可以设置一个3D场景）*/
+            -webkit-transform-style: preserve-3d;
+            -webkit-transition: 1s;
+        }
+
+        .Qcontainer:hover .film {
+            /*Three：当鼠标悬停的时候给.film的div添加一个翻转*/
+            -webkit-transform: rotateY(180deg);
+        }
+
+        .face {
+            /*必须使用绝对定位，这样海报才能覆盖在.back这个div上面*/
+            position: absolute;
+            /*Four：处理海报翻转之后影藏在其后面的内容*/
+            -webkit-backface-visibility: hidden;
+        }
+
+        .back {
+            width: 66%;
+            height: 127%;
+            /*要加上下面的旋转，不加的话，.back这个div就会显示在正海报之上*/
+            -webkit-transform: rotateY(180deg);
+            background: #3b3b3b;
+            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+            padding: 15%;
+        }
+
+        .front {
+            z-index: 5;
+        }
+
+        .front:hover {
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="content" class="group" role="main">
+    <h3><strong>注意：</strong>对webkit核心的浏览器支持</h3>
+    <section class="Qcontainer">
+        <div class="film">
+            <div class="face front"><img src="img/goonies.jpg" alt="The Goonies"/></div>
+            <div class="face back"><h5>HOT!</h5></div>
+        </div>
+    </section>
+
+    <section class="Qcontainer">
+        <div class="film">
+            <div class="face front"><img src="img/munich.jpg" alt="The Goonies"/></div>
+            <div class="face back"><h5>NOT!</h5></div>
+        </div>
+    </section>
+
+    <section class="Qcontainer">
+        <div class="film">
+            <div class="face front"><img src="img/kingKong.jpg" alt="The Goonies"/></div>
+            <div class="face back"><h5>NOT!</h5></div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
