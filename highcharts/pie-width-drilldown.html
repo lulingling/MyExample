@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>饼状图</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="highcharts-js/highcharts.js"></script>
+
+    <!--主题js-->
+    <script src="highcharts-js/themes/dark-blue.js"></script>
+
+    <!--如果需要到处图标，引入一下js文件-->
+    <script src="highcharts-js/modules/exporting.js"></script>
+</head>
+<body>
+<div id="pie-container" style="min-width:300px;height: 400px;border: 1px solid #000000;"></div>
+
+<script>
+    $(function () {
+        $('#pie-container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: '该时间段内投资回报率分析',
+                style: {
+                    color: "#ffffff"
+                }
+            },
+            subtitle: {
+                text: "单位：人",
+                style: {
+                    color: "#fff"
+                }
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,//选中某一块是否允许分离
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.percentage:.1f}%',
+                        style: {
+                            fontSize: "20px",
+                            color: "#ccc"
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                // colorByPoint: true,
+                data: [
+                    {
+                        name: 'R≤45人数占比',
+                        y: 25
+                    },
+                    {
+                        name: '45<R≤90人数占比',
+                        y: 30
+                    },
+                    {
+                        name: "90<R≤180人数占比",
+                        y: 10
+                    },
+                    {
+                        name: '180<R≤365人数占比',
+                        y: 20
+                    }
+                    , {
+                        name: 'R>365人数占比',
+                        y: 15
+                    }
+                ]
+            }]
+        });
+    });
+</script>
+</body>
+</html>
