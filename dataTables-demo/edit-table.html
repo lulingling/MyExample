@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="media/css/editor.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="media/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="media/css/select.dataTables.min.css" rel="stylesheet" type="text/css">
+    <!--<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
+    <script src="media/js/jquery-2.1.4.min.js"></script>
+    <script src="media/js/jquery.dataTables.js"></script>
+    <script src="media/js/dataTables.buttons.min.js"></script>
+    <script src="media/js/dataTables.select.min.js"></script>
+    <script src="media/js/dataTables.editor.js"></script>
+    <!--<script src="media/js/bootstrap.min.js"></script>-->
+
+    <style>
+        table {
+            text-align: center;
+        }
+    </style>
+    <script>
+        var editor;
+
+        $(function () {
+            editor = new $.fn.dataTable.Editor({
+                ajax: "data/data1.json",
+                table: "#example",
+                fields: [
+                    {
+                        label: "First name:",
+                        name: "first_name"
+                    }, {
+                        label: "Last name:",
+                        name: "last_name"
+                    }, {
+                        label: "Position:",
+                        name: "position"
+                    }, {
+                        label: "Office:",
+                        name: "office"
+                    }, {
+                        label: "Extension:",
+                        name: "extn"
+                    }, {
+                        label: "Start date:",
+                        name: "start_date",
+                        type: "datetime"
+                    }, {
+                        label: "Salary:",
+                        name: "salary"
+                    }
+                ],
+                formOptions: {
+                    bubble: {
+                        title: "Edit",
+                        buttons: false
+                    }
+                }
+            });
+
+            /*/!*点击某行的某个元素*!/
+            $('#example').on('click', 'tbody td', function (e) {
+                if ($(this).index() < 6) {
+                    editor.bubble(this);
+                }
+            });*/
+
+            /*点击delete*/
+            $('#example').on('click', 'a.remove', function (e) {
+                editor
+                        .title('Delete row')
+                        .message('Are you sure you wish to delete this row?')
+                        .buttons(
+                        {
+                            "label": "Delete",
+                            "fn": function () {
+                                editor.submit()
+                            }
+                        }
+                )
+                        .remove($(this).closest('tr'));
+            });
+
+            /*点击edit*/
+            $('#example').on('click', 'a.edit', function (e) {
+                editor
+                        .title('Edit row')
+                        .message('Are you sure you wish to Edit this row?')
+                        .buttons(
+                        {
+                            "label": "Edit",
+                            "fn": function () {
+                                editor.submit()
+                            }
+                        }
+                )
+                        .remove($(this).closest('tr'));
+            });
+
+            $("#example").DataTable({
+                ajax: "data/data1.json",
+                columns: [
+                    {data: "first_name"},
+                    {data: "last_name"},
+                    {data: "position"},
+                    {data: "office"},
+                    {data: "start_date"},
+                    {data: "salary", render: $.fn.dataTable.render.number(',', '.', 0, '$')},
+                    {
+                        data: null,
+                        defaultContent: "<a href='#' class='remove'>Delete</a>",
+                        orderable: false
+                    },
+                    {
+                        data: null,
+                        defaultContent: "<a href='#' class='edit'>Edit</a>",
+                        orderable: false
+                    }
+                ],
+                select:true,
+                buttons:[
+                    {extend:"新建",editor:editor},
+                    {extend:"编辑",editor:editor},
+                    {extend:"删除",editor:editor}
+                ]
+            })
+        })
+    </script>
+</head>
+<body>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Start date</th>
+        <th>Salary</th>
+        <th>删除</th>
+        <th>编辑</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+</table>
+</body>
+</html>

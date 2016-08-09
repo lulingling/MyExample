@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <!--<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
+    <script src="media/js/jquery-2.1.4.min.js"></script>
+    <script src="media/js/jquery.dataTables.js"></script>
+    <!--<script src="media/js/bootstrap.min.js"></script>-->
+
+    <style>
+        table{
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            var table = $("#example").DataTable({
+                'ajax': "data/data.json",
+                'columns': [
+                    {'data': 'id'},
+                    {'data': 'name'},
+                    {'data': 'position'},
+                    {'data': 'office'},
+                    {'data': 'extn'},
+                    {'data': 'start_date'},
+                    {'data': 'salary'}
+                ],
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_ 条记录",
+                    "oPaginate": {
+                        "sPrevious": "上一页",
+                        "sNext": "下一页"
+                    },
+                    "sSearch": "搜索",
+                    "sInfo": "当前显示 _START_ 到 _END_ 条,共_TOTAL_条记录",
+                    "sProcessing": "正在加载中...",
+                    "sEmptyTable": "表中无数据存在！"
+                },
+                "aLengthMenu": [
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"] // change per page values here
+                ],
+                // set the initial value
+                "iDisplayLength": 5,
+                "paging": true,
+                "scrollY": 500,
+                "processing": true
+            });
+
+            /*单击一条数据*/
+            /*$('#example tbody').on('click', 'tr', function () {
+             var data = table.row( this ).data();
+             alert(data.id);
+             } );*/
+
+            /*双击一条数据*/
+            $('#example tbody').on('dblclick', 'tr', function () {
+                var data = table.row(this).data();
+                alert(data.id);
+            });
+        })
+    </script>
+</head>
+<body>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Extn.</th>
+        <th>Start date</th>
+        <th>Salary</th>
+        <!--<th>Operation</th>-->
+    </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+</table>
+</body>
+</html>
