@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date Format</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <style>
+        input#test {
+            width: 320px;
+            height: 40px;
+            font-size: 15px;
+        }
+
+        button {
+            width: auto;
+            height: 42px;
+            border: none;
+            outline: none;
+            background-color: #3793ff;
+            font-size: 15px;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #2a67bd;
+        }
+
+        div#result {
+            margin-top: 18px;
+            font-size: 20px;
+            color: #ff301f;
+        }
+    </style>
+</head>
+<body>
+<input id="test" type="text" placeholder="请输入日期时间，格式为：2016-09-12 17:57:58">
+<button id="switch1">默认日期</button>
+<button id="switch2">论坛帖子日期</button>
+<div id="result"></div>
+
+<script>
+
+    $(function () {
+        var $test = $("#test");
+        var $button1 = $("#switch1");
+        var $button2 = $("#switch2");
+        var $result = $("#result");
+
+        $button1.click(function () {
+
+            var $testInput = $test.val();
+
+            if ($testInput) {
+                $result.text(getDefaultDate(convertTime($testInput)))
+            } else {
+                $result.text("请输入日期时间");
+            }
+
+        });
+
+        $button2.click(function () {
+
+            var $testInput = $test.val();
+
+            if ($testInput) {
+                $result.text(getTopicDate(convertTime($testInput)))
+            } else {
+                $result.text("请输入日期时间");
+            }
+        });
+
+    });
+
+
+    /*****直接从后台取出的时间字符串格式为“2016-16-20 12:22:25”，在IPhone上解析会出错，需要转换格式******/
+    function convertTime(timeString) {
+        var endTime;
+        endTime = timeString.replace(/\-/g, '/');
+        endTime = new Date(endTime).getTime();
+        return endTime;
+    }
+
+    // format time use：var d = new Date().format('yyyy-MM-dd hh:mm:ss');
+    Date.prototype.format = function (format) {
+        var date = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S+": this.getMilliseconds()
+        };
+        if (/(y+)/i.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        for (var k in date) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                        ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+            }
+        }
+        return format;
+    };
+
+    /*for default time-shifting*/
+    function getDefaultDate(dateTimeStamp) {
+
+        var minute = 1000 * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+
+        var now = new Date().getTime();
+
+        var diffValue = now - dateTimeStamp;
+
+        if (diffValue < 0) {
+            return;
+        }
+
+        var dayC = diffValue / day;
+        var hourC = diffValue / hour;
+        var minC = diffValue / minute;
+
+        if (dayC >= 1 && dayC < 2) {
+
+            var time_stamp = new Date(dateTimeStamp);
+
+            var h = time_stamp.getHours();
+            var m = time_stamp.getMinutes();
+
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+
+            result = "" + "昨天 " + h + ":" + m;
+
+        } else if (dayC >= 2) {
+
+            result = "" + new Date(dateTimeStamp).format('yyyy年MM月dd日 hh:mm');
+        }
+        else if (hourC >= 1) {
+            result = "" + parseInt(hourC) + "小时前";
+        }
+        else if (minC >= 1) {
+            result = "" + parseInt(minC) + "分钟前";
+        } else {
+            result = "1分钟前";
+        }
+
+        return result;
+    }
+
+    /*for topic time-shifting*/
+    function getTopicDate(dateTimeStamp) {
+        var result_news_time = "";
+
+        var minute = 1000 * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+
+        var now = new Date().getTime();
+
+        var diffValue = now - dateTimeStamp;
+
+        if (diffValue < 0) {
+            return;
+        }
+
+        var dayC = diffValue / day;
+
+        if (dayC >= 1 && dayC < 2) {
+
+            var time_stamp = new Date(dateTimeStamp);
+
+            var h = time_stamp.getHours();
+            var m = time_stamp.getMinutes();
+
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+
+            result_news_time = "" + "昨天 " + h + ":" + m;
+
+        } else if (dayC >= 2) {
+
+            result_news_time = "" + new Date(dateTimeStamp).format('yyyy年MM月dd日 hh:mm');
+        } else {
+
+            var time_stamp_today = new Date(dateTimeStamp);
+
+            var _h = time_stamp_today.getHours();
+            var _m = time_stamp_today.getMinutes();
+
+            _h = _h < 10 ? "0" + _h : _h;
+            _m = _m < 10 ? "0" + _m : _m;
+
+            result_news_time = _h + ":" + _m;
+        }
+
+        return result_news_time;
+    }
+</script>
+</body>
+</html>
