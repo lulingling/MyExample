@@ -33,9 +33,10 @@
     </style>
 </head>
 <body>
+
 <input id="test" type="text" placeholder="请输入日期时间，格式为：2016-09-12 17:57:58">
 <button id="switch1">默认日期</button>
-<button id="switch2">论坛帖子日期</button>
+<button id="switch2">论坛帖子列表日期</button>
 <div id="result"></div>
 
 <script>
@@ -45,13 +46,12 @@
         var $button1 = $("#switch1");
         var $button2 = $("#switch2");
         var $result = $("#result");
+        var $testInput;
 
         $button1.click(function () {
-
-            var $testInput = $test.val();
-
+            $testInput = $test.val();
             if ($testInput) {
-                $result.text(getDefaultDate(convertTime($testInput)))
+                $result.text("默认日期：" + getDefaultDate(convertTime($testInput)))
             } else {
                 $result.text("请输入日期时间");
             }
@@ -59,11 +59,9 @@
         });
 
         $button2.click(function () {
-
-            var $testInput = $test.val();
-
+            $testInput = $test.val();
             if ($testInput) {
-                $result.text(getTopicDate(convertTime($testInput)))
+                $result.text("论坛帖子列表日期：" + getTopicDate(convertTime($testInput)))
             } else {
                 $result.text("请输入日期时间");
             }
@@ -73,6 +71,7 @@
 
 
     /*****直接从后台取出的时间字符串格式为“2016-16-20 12:22:25”，在IPhone上解析会出错，需要转换格式******/
+
     function convertTime(timeString) {
         var endTime;
         endTime = timeString.replace(/\-/g, '/');
@@ -104,16 +103,14 @@
     };
 
     /*for default time-shifting*/
-    function getDefaultDate(dateTimeStamp) {
-
+    function getTopicDate(dateTimeStamp) {
+        var result = "";
         var minute = 1000 * 60;
         var hour = minute * 60;
         var day = hour * 24;
 
         var now = new Date().getTime();
-
         var diffValue = now - dateTimeStamp;
-
         if (diffValue < 0) {
             return;
         }
@@ -123,17 +120,12 @@
         var minC = diffValue / minute;
 
         if (dayC >= 1 && dayC < 2) {
-
             var time_stamp = new Date(dateTimeStamp);
-
             var h = time_stamp.getHours();
             var m = time_stamp.getMinutes();
-
             h = h < 10 ? "0" + h : h;
             m = m < 10 ? "0" + m : m;
-
             result = "" + "昨天 " + h + ":" + m;
-
         } else if (dayC >= 2) {
 
             result = "" + new Date(dateTimeStamp).format('yyyy年MM月dd日 hh:mm');
@@ -144,58 +136,41 @@
         else if (minC >= 1) {
             result = "" + parseInt(minC) + "分钟前";
         } else {
-            result = "1分钟前";
+            result = "刚刚";
         }
-
         return result;
     }
 
     /*for topic time-shifting*/
-    function getTopicDate(dateTimeStamp) {
+    function getDefaultDate(dateTimeStamp) {
         var result_news_time = "";
-
         var minute = 1000 * 60;
         var hour = minute * 60;
         var day = hour * 24;
 
         var now = new Date().getTime();
-
         var diffValue = now - dateTimeStamp;
-
         if (diffValue < 0) {
             return;
         }
-
         var dayC = diffValue / day;
-
         if (dayC >= 1 && dayC < 2) {
-
             var time_stamp = new Date(dateTimeStamp);
-
             var h = time_stamp.getHours();
             var m = time_stamp.getMinutes();
-
             h = h < 10 ? "0" + h : h;
             m = m < 10 ? "0" + m : m;
-
             result_news_time = "" + "昨天 " + h + ":" + m;
-
         } else if (dayC >= 2) {
-
             result_news_time = "" + new Date(dateTimeStamp).format('yyyy年MM月dd日 hh:mm');
         } else {
-
             var time_stamp_today = new Date(dateTimeStamp);
-
             var _h = time_stamp_today.getHours();
             var _m = time_stamp_today.getMinutes();
-
             _h = _h < 10 ? "0" + _h : _h;
             _m = _m < 10 ? "0" + _m : _m;
-
             result_news_time = _h + ":" + _m;
         }
-
         return result_news_time;
     }
 </script>
