@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Promise</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script>
+        function getData($timeout, $q) {
+            return function () {
+                var defer = $q.defer();
+
+                /*模拟异步函数（常用于从服务器请求数据 $http）*/
+                $timeout(function () {
+                    /*模拟50%的resolve，50%的reject*/
+                    if (Math.round(Math.random())) {
+                        defer.resolve("data received.");
+                    } else {
+                        defer.reject("Error, try again")
+                    }
+                }, 2000);
+
+                return defer.promise;
+            }
+        }
+
+        angular.module("app", [])
+                .factory("getData", getData)
+                .run(function (getData) {
+                    var promise = getData().then(
+                            function (string) {//success 处理 （resolve）
+                                console.log(string)
+                            },
+                            function (error) {//error 处理 (reject)
+                                console.log(error)
+                            }
+                    ).finally(function () {//不管promise对象是被resolve还是被reject，都执行某个特殊的函数，则用finally
+                        console.log('Finished at: ' + new Date())
+                    })
+                })
+    </script>
+</head>
+<body ng-app="app">
+<h1>AngularJs promise Test</h1>
+<p>请打开控制台查看</p>
+</body>
+</html>
