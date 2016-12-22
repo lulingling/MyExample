@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimal-ui">
+    <title>Touch Tab</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div.container {
+            overflow: hidden;
+            height:60px;
+            margin: 0 auto;
+        }
+
+        #olContent{
+            height: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        ol li {
+            box-sizing: border-box;
+            display: inline-block;
+            height: 60px;
+            line-height: 60px;
+            font-size: 28px;
+            position: relative;
+            float: left;
+            background-color: #ffad91;
+            color: #636363;
+            border-right: 1px solid #dd2039;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ol id="olContent">
+        <li>Tab1</li>
+        <li>Tab2</li>
+        <li>Tab3</li>
+        <li>Tab4</li>
+        <li>Tab5</li>
+    </ol>
+</div>
+<script type="text/javascript">
+    var box = document.querySelector("#olContent");
+    box.addEventListener("touchstart", touch, false);
+    box.addEventListener("touchmove", touch, false);
+    box.addEventListener("touchend", touch, false);
+
+    /*初始化屏幕显示的tab的宽度*/
+    var liWidths = document.body.clientWidth / 3 + "px";
+
+    /*一个需要显示几个tab*/
+    var olWidths = document.body.clientWidth / 3 * 5 + "px";
+
+    /*动态设置tab容器（ol）的宽度*/
+    $("#olContent").css("width", olWidths);
+
+    /*动态设置tab(li)的宽度*/
+    var liArr = $("#olContent li");
+    $.each(liArr, function (idx, value) {
+        $(value).css("width", liWidths);
+    });
+
+    /*左右滑动的function*/
+    var sx, ex, left;
+    function touch(event) {
+        var e = event || window.event;
+        switch (e.type) {
+            case "touchstart":
+                var touces = e.targetTouches[0];
+                sx = touces.pageX;
+
+                left = parseInt(box.style.left);
+                break;
+
+            case "touchmove" :
+                var a = e.changedTouches[0].pageX;
+                var b = sx - a;
+                if (isNaN(left)) {
+                    left = 0;
+                }
+                box.style.left = -b + left + 'px';
+                break;
+
+            case "touchend" :
+                left = parseInt(box.style.left);
+                var c = e.changedTouches[0];
+                ex = c.pageX;
+
+                /*根据当前实例，一屏显示3个，当向左滑动超过两个tab，即left值小于两个tab的宽度的时候，tab的left值设置为（-tab宽度*2）*/
+                if (left >= 0) {
+                    box.style.left = 0;
+                } else if (left <= -parseInt(document.body.clientWidth / 3 * 2)) {
+                    box.style.left = -(parseInt(document.body.clientWidth / 3 * 2)) + 'px';
+                }
+                break;
+        }
+    }
+</script>
+</body>
+</html>
