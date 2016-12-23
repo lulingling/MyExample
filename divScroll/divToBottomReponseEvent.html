@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Div To Bottom Response Event</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <style>
+        #lucky-user {
+            width: 500px;
+            height: 200px;
+            background-color: #bdbdbd;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+<ol id="lucky-user"></ol>
+
+
+<script>
+    $(function () {
+        for (var i = 0; i < 40; i++) {
+            $("#lucky-user").append("<li>List item " + (i + 1) + "</li>")
+        }
+
+        $("#lucky-user").scroll(function () {
+            console.log($(this).scrollTop() + $(this).innerHeight());
+            console.log($(this)[0].scrollHeight);
+
+            if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+               alert("已经到达底部")
+            }
+        });
+    })
+</script>
+</body>
+</html>

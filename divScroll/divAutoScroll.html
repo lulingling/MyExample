@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Div Auto Scroll</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <style>
+        #lucky-user {
+            width: 500px;
+            height: 200px;
+            background-color: #bdbdbd;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+<ol id="lucky-user"></ol>
+
+
+<script>
+    $(function () {
+        for (var i = 0; i < 40; i++) {
+            $("#lucky-user").append("<li>List item " + (i + 1) + "</li>")
+        }
+
+        var scrollDistancePerSecond = 50; // Scroll 50px every second.
+        var scrollDistancePerAnimationFrame = Math.ceil(scrollDistancePerSecond / 60); // Animate at 60 fps.
+        var wrapper = document.getElementById('lucky-user');
+
+        setTimeout(startScroll, 500);
+
+        function startScroll() {
+            wrapper.scrollTop = 0;
+            autoScroll(wrapper);
+        }
+
+        function autoScroll(element) {
+            element.scrollTop += scrollDistancePerAnimationFrame;
+            if (element.scrollTop + element.clientHeight < element.scrollHeight) {
+                window.requestAnimationFrame(autoScroll.bind(null, element));//每一帧动画之后再次调用autoScroll自身
+            } else {
+
+                /*防止迭代次数太多，程序会死掉*/
+                setTimeout(function () {
+                    startScroll();
+                }, 0);
+            }
+        }
+    })
+</script>
+</body>
+</html>
