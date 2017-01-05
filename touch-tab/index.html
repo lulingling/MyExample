@@ -35,9 +35,31 @@
             color: #636363;
             border-right: 1px solid #dd2039;
         }
+
+        .content{
+            overflow-x: scroll;
+            display: inline-block;
+            white-space: nowrap;
+            height: 100px;
+            width: 100%;
+            background-color: #c2c2c2;
+        }
+
+        .content div{
+            display: inline-block;
+            width: 110px;
+            margin: 0 5px;
+
+            background-color: #0eaefa;
+            height: 100px;
+            line-height:100px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+<h1>通过js控制的tab操作栏</h1>
+<!--可以通过js控制ol的left值来显示当前屏幕是显示哪一个tab-->
 <div class="container">
     <ol id="olContent">
         <li>Tab1</li>
@@ -47,6 +69,19 @@
         <li>Tab5</li>
     </ol>
 </div>
+
+<br><br><br><br>
+
+<h1>显示一般的水平滑动的布局</h1>
+<div class="content">
+    <div>Tab1</div>
+    <div>Tab2</div>
+    <div>Tab3</div>
+    <div>Tab4</div>
+    <div>Tab5</div>
+    <div>查看更多</div>
+</div>
+
 <script type="text/javascript">
     var box = document.querySelector("#olContent");
     box.addEventListener("touchstart", touch, false);
