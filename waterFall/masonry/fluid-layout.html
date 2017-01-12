@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>流逝布局</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/masonry.pkgd.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .grid {
+            background: #ddd;
+        }
+
+        .grid:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .grid-sizer,
+        .grid-item {
+            width: 33.3333%;
+        }
+
+        .grid-item {
+            float: left;
+        }
+
+        .grid-item .content{
+            margin:10px;
+            background-color: #fff;
+        }
+
+        .grid-item .content div{
+            color: #555;
+        }
+
+        .grid-item img {
+            display: block;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h1>Masonry demo</h1>
+
+<div class="grid">
+    <div class="grid-sizer"></div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_01.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_04.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_05.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_06.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_08.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_07.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_09.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_10.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_03.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_12.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_13.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_02.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_11.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_14.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_15.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="content">
+            <img src="image/img_16.jpg" alt="">
+            <div>简笔画</div>
+        </div>
+    </div>
+</div>
+<script>
+    var $grid = $(".grid").masonry({
+        itemSelector:".grid-item",
+        percentPosition:true,
+        columnWidth:".grid-sizer",
+        isAnimated:true
+    });
+
+    /*imagesLoaded.js 解决加载图片时重叠的问题*/
+    $grid.imagesLoaded().progress( function() {
+        $grid.masonry();
+    });
+
+</script>
+</body>
+</html>
