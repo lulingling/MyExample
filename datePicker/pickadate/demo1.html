@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Date picker - pickadate.js</title>
+    <link rel="stylesheet" href="vendor/themes/default.css" type="text/css">
+    <link rel="stylesheet" href="vendor/themes/default.date.css" type="text/css">
+    <link rel="stylesheet" href="vendor/themes/default.time.css" type="text/css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="vendor/picker.js"></script>
+    <script src="vendor/picker.date.js"></script>
+    <script src="vendor/picker.time.js"></script>
+</head>
+<body>
+<button id="btn1">Open</button>
+<br>
+<button id="btn2">Log the value</button>
+<br>
+<button id="btn3">Log the select</button>
+<br>
+<button id="btn4">Log the select formatted</button>
+<br>
+<button id="btn5">Log th open state</button>
+<br>
+<button id="btn6">Log th picker id</button>
+<br>
+
+<button id="btn7">Set Clear</button>
+<br>
+<button id="btn8">Set Select</button>
+<br>
+<input id="demo1" type="text" data-value="2017年/3月">
+
+<script>
+    $(function () {
+        var $ocBtn = $('#btn1');
+
+        var $ocInput = $('#demo1').pickadate({
+            format: 'yyyy年mm月',
+            onOpen: function () {
+                $ocBtn.text('Close')
+            },
+            onClose: function () {
+                $ocBtn.text('Open')
+            }
+        });
+
+        var ocPicker = $ocInput.pickadate('picker');
+
+        /*event call把才开始 按时bindings*/
+        ocPicker.on({
+            open:function () {
+
+            },
+            close:function () {
+
+            },
+            render:function () {
+
+            },
+            stop:function () {
+
+            },
+            set:function (context) {
+                console.log(context);
+            }
+        });
+
+        /*Open and Close*/
+        $ocBtn.on('click', function (event) {
+            if (ocPicker.get('open')) {
+                ocPicker.close()
+            }
+            else {
+                ocPicker.open()
+            }
+            event.stopPropagation()
+        }).on('mousedown', function (event) {
+            event.preventDefault()
+        });
+
+        /*get value*/
+        $("#btn2").on('click',function () {
+            console.log(ocPicker.get('value'));
+        });
+
+        /*get select*/
+        $("#btn3").on("click", function () {
+            console.log(ocPicker.get('select'))
+        });
+
+        /*get select formatted*/
+        $("#btn4").on("click", function () {
+            console.log(ocPicker.get('select','yyyy/mm/dd'))
+        });
+
+        /*get open state*/
+        $("#btn5").on("click", function () {
+            console.log(ocPicker.get('open'))
+        });
+
+        /*get picker id*/
+        $("#btn6").on("click", function () {
+            console.log(ocPicker.get('id'))
+        });
+
+        /*set clear*/
+        $("#btn7").on("click", function () {
+            ocPicker.clear();
+        });
+
+        /*set Select*/
+        $("#btn8").on("click", function () {
+            ocPicker.set('select', new Date(),{format:'yyyy年mm月'})
+        });
+    })
+</script>
+</body>
+</html>

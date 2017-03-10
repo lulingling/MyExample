@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Date picker - pickadate.js</title>
+    <link rel="stylesheet" href="vendor/themes/default.css" type="text/css">
+    <link rel="stylesheet" href="vendor/themes/default.date.css" type="text/css">
+    <link rel="stylesheet" href="vendor/themes/default.time.css" type="text/css">
+    <style>
+        .picker__select--month, .picker__select--year{
+            height:auto;
+            width:22.5%;
+        }
+
+        .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
+            background-color: #c90000;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+
+        .picker__day--highlighted:hover, .picker--focused .picker__day--highlighted{
+            background-color: #c90000;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+
+        .picker__day--highlighted{
+            background-color: #c90000;
+            border-color: #c90000;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+
+        .picker__day--today:before{
+            border-top: 0.5em solid #820000;
+            border-left: .5em solid transparent;
+        }
+
+    </style>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="vendor/picker.js"></script>
+    <script src="vendor/picker.date.js"></script>
+    <script src="vendor/picker.time.js"></script>
+    <script src="js/main.js"></script>
+
+</head>
+<body>
+<input id="date1" type="text" data-value="2017年3月"><br>
+</body>
+</html>
